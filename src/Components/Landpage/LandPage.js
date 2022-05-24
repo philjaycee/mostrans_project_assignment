@@ -89,6 +89,7 @@ const LandPage = () =>  {
               id={pokemonStats.id}
               image={pokemonStats.image}
               name={pokemonStats.name}
+              href={`/{pokemonStats.id}`}
             />)}
                 </div>
             </div>
