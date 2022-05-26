@@ -2,113 +2,56 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap";
 import React, {  useEffect,useState } from 'react'
 import Container from './Container'
-
+import CardDetails from '../Character_Details/profile_detail'
 import './landpage.css'
-
 import Navbar from '../Navbar/navbar__'
 
-/*
-<ul>
-              <li><a href="#" className="kolom_1">Home</a></li>
-              <li><a href="#" className="kolom_1">Work</a></li>
-              <li><a href="#" className="kolom_1">Contact</a></li>
-              <li><a href="#" className="kolom_1">About Me</a></li>
-              <li><a href="#" className="kolom_1">Q & A</a></li>
-            </ul>
-            <li><a href="#" className = "link_2" >Login</a></li>
-            <nav className="navbar fixed-top navbar-expand-lg navbar-dark p-md-3">
-      <div className="container">
-        <a className="navbar-brand" href="#">Web Zone</a>
-        <button
-          className="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <div className="mx-auto"></div>
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#">Home</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#">About</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#">Blog</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#">Pricing</a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link text-white" href="#">Contact</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-*/
-
-/*
-<div className="all-container">
-                    {allPokemons.map( (pokemonStats, index) => 
-                      <Container
-                        key={index}
-                        id={pokemonStats.id}
-                        image={pokemonStats.image}
-                        name={pokemonStats.name}
-                      />)}
-                    </div>
-
-*/
 
 const LandPage = () =>  { 
 
-   const[allPokemons, setAllPokemons] = useState([])
+   const[allCharacters, setAllCharacters] = useState([])
    const [loadMore, setLoadMore] = useState('https://rickandmortyapi.com/api/character')
 
-  const getAllPokemons = async () => {
+  const getAllCharacters = async () => {
     const res = await fetch(loadMore)
     const data = await res.json() 
 
-    function createPokemonObject(results)  {
-      results.forEach( async pokemon => {
-        const res = await fetch(`https://rickandmortyapi.com/api/character/${pokemon.id}`)
+    function createAllCharacters(results)  {
+      results.forEach( async characters => {
+        const res = await fetch(`https://rickandmortyapi.com/api/character/${characters.id}`)
         const data =  await res.json()
-        setAllPokemons( currentList => [...currentList, data])
+        setAllCharacters( currentList => [...currentList, data])
       })
     }
-    createPokemonObject(data.results)
+    createAllCharacters(data.results)
   }
 
- useEffect(() => {
-  getAllPokemons()
- }, [])
+    useEffect(() => {
+      getAllCharacters()
+    }, [])
+
 
     return (
       <>      
       <Navbar />
       <div className="banner-area">
-      <div className="container">
-            <div className="row">
-              <div className="sm col-3">
-                <h1>List of Characters</h1>
+      <div className="container px-5 mx-5">
+            <div className="d-flex flex-sm-row row px-5 mx-5 justify-content-center">
+              <div className=" col-sm-3">
+                <div className= "mr-4">
+                </div>
               </div>
-              <div className="lg col-8 px-2">
+              <div className=" col-md-7  ">
               <div className="all-container">
-                    {allPokemons.map( (pokemonStats, index) => 
+                    <h1>List of Characters</h1>
+                    {allCharacters.map((characterInfo, index) => 
                       <Container
                         key={index}
-                        id={pokemonStats.id}
-                        image={pokemonStats.image}
-                        name={pokemonStats.name}
+                        id={characterInfo.id}
+                        image={characterInfo.image}
+                        name={characterInfo.name}
                       />)}
-                    </div>
+                  </div>
               </div>
             </div>
           </div>  

@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
        <Routes>
        <Route path="/" element={<LandPage/>} />
-       <Route path="/:id" element={<CardDetails/>} />
+       <Route path="/details/:id" element={<CardDetails/>} />
        <Route path="/locations" element={<Location/>} />
        </Routes>
       </BrowserRouter>
