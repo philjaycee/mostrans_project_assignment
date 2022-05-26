@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputGroup from "../Filter/InputGroup";
 import Container from '../Landpage/Container'
-import Location_Search from "./location_search";
 import Navbar from '../Navbar/navbar__'
 
 const Location = ( ) => {

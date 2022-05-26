@@ -6,7 +6,6 @@ import CardDetails from '../Character_Details/profile_detail'
 import './landpage.css'
 import Navbar from '../Navbar/navbar__'
 
-
 const LandPage = () =>  { 
 
    const[allCharacters, setAllCharacters] = useState([])
