@@ -18,14 +18,14 @@ const Location_Search = () =>  {
     const res = await fetch(loadMore)
     const data = await res.json() 
 
-    function createPokemonObject(results)  {
-      results.forEach( async pokemon => {
-        const res = await fetch(`https://rickandmortyapi.com/api/character/${pokemon.id}`)
+    function createCharactersObject(results)  {
+      results.forEach( async characters => {
+        const res = await fetch(`https://rickandmortyapi.com/api/character/${characters.id}`)
         const data =  await res.json()
         setAllCharacters( currentList => [...currentList, data])
       })
     }
-    createPokemonObject(data.results)
+    createCharactersObject(data.results)
   }
 
  useEffect(() => {
